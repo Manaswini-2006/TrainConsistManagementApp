@@ -1,4 +1,5 @@
-import java.util.LinkedList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TrainConsistManagementApp {
 
@@ -6,19 +7,14 @@ public class TrainConsistManagementApp {
 
         System.out.println("=== Train Consist Management App ===");
 
-        LinkedList<String> trainConsist = new LinkedList<>();
+        HashMap<String, Integer> bogieCapacity = new HashMap<>();
 
-        trainConsist.add("Engine");
-        trainConsist.add("Sleeper");
-        trainConsist.add("AC");
-        trainConsist.add("Cargo");
-        trainConsist.add("Guard");
+        bogieCapacity.put("Sleeper", 72);
+        bogieCapacity.put("AC Chair", 54);
+        bogieCapacity.put("First Class", 24);
 
-        trainConsist.add(2, "Pantry Car");
-
-        trainConsist.removeFirst();
-        trainConsist.removeLast();
-
-        System.out.println("Final Train Consist: " + trainConsist);
+        for (Map.Entry<String, Integer> entry : bogieCapacity.entrySet()) {
+            System.out.println(entry.getKey() + " Capacity: " + entry.getValue());
+        }
     }
 }
