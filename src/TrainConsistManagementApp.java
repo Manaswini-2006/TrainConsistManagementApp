@@ -1,17 +1,22 @@
 public class TrainConsistManagementApp {
     public static void main(String[] args) {
         String[] bogies = {"BG101","BG205","BG309","BG412","BG550"};
+        String[] empty = {};
 
-        System.out.println(binarySearch(bogies, "BG309"));
-        System.out.println(binarySearch(bogies, "BG999"));
-        System.out.println(binarySearch(bogies, "BG101"));
-        System.out.println(binarySearch(bogies, "BG550"));
+        System.out.println(search(bogies, "BG309"));
 
-        String[] single = {"BG101"};
-        System.out.println(binarySearch(single, "BG101"));
+        try {
+            System.out.println(search(empty, "BG101"));
+        } catch (IllegalStateException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    public static boolean binarySearch(String[] arr, String key) {
+    public static boolean search(String[] arr, String key) {
+        if (arr == null || arr.length == 0) {
+            throw new IllegalStateException("No bogies available for search");
+        }
+
         int low = 0;
         int high = arr.length - 1;
 
