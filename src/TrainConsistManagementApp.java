@@ -32,17 +32,11 @@ public class TrainConsistManagementApp {
         bogieList.add(new Bogie("AC Chair", 56));
         bogieList.add(new Bogie("First Class", 24));
         bogieList.add(new Bogie("Sleeper", 72));
-        bogieList.add(new Bogie("AC Chair", 56));
 
-        Map<String, List<Bogie>> groupedBogies = bogieList.stream()
-                .collect(Collectors.groupingBy(Bogie::getName));
+        int totalSeats = bogieList.stream()
+                .map(b -> b.getCapacity())
+                .reduce(0, Integer::sum);
 
-        for (Map.Entry<String, List<Bogie>> entry : groupedBogies.entrySet()) {
-            System.out.println("Bogie Type: " + entry.getKey());
-            for (Bogie b : entry.getValue()) {
-                b.display();
-            }
-            System.out.println();
-        }
+        System.out.println("Total Seating Capacity: " + totalSeats);
     }
 }
