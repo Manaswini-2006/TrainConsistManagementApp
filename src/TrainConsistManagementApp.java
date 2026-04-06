@@ -1,20 +1,44 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.*;
 
-public class TrainConsistManagementApp {
+class Bogie {
+    private String name;
+    private int capacity;
 
+    public Bogie(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void display() {
+        System.out.println("Bogie Type: " + name + " | Capacity: " + capacity);
+    }
+}
+
+public class TrainConsistApp {
     public static void main(String[] args) {
 
-        System.out.println("=== Train Consist Management App ===");
+        List<Bogie> bogieList = new ArrayList<>();
 
-        HashMap<String, Integer> bogieCapacity = new HashMap<>();
+        bogieList.add(new Bogie("Sleeper", 72));
+        bogieList.add(new Bogie("AC Chair", 56));
+        bogieList.add(new Bogie("First Class", 24));
 
-        bogieCapacity.put("Sleeper", 72);
-        bogieCapacity.put("AC Chair", 54);
-        bogieCapacity.put("First Class", 24);
+        List<Bogie> filteredList = bogieList.stream()
+                .filter(b -> b.getCapacity() > 60)
+                .collect(Collectors.toList());
 
-        for (Map.Entry<String, Integer> entry : bogieCapacity.entrySet()) {
-            System.out.println(entry.getKey() + " Capacity: " + entry.getValue());
+        System.out.println("Filtered Bogies (Capacity > 60):");
+        for (Bogie b : filteredList) {
+            b.display();
         }
     }
 }
